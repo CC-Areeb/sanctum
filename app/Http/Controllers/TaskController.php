@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\TaskResource;
+use App\Models\Task;
+use Illuminate\Console\Events\ScheduledTaskFinished;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -13,7 +17,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return response()->json('test');
+        $query = Task::where('user_id', Auth::user()->id)->get();
+        return TaskResource::collection($query);
     }
 
     /**
@@ -23,7 +28,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**

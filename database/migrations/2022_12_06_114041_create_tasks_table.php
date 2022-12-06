@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('description');
             $table->string('prioirity')->default('medium');
             $table->foreign('user_id')
-                ->references('')
-                ->on('')
+                ->references('id')
+                ->on('users')
                 ->cascadeOnDelete();
             $table->timestamps();
         });
